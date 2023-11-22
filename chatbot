@@ -1,0 +1,51 @@
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import java.util.List;
+
+public class ChatbotTest {
+    public static void main(String[] args) {
+
+        // Set the path to the ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "/home/ibtech7/Downloads/chromedriver_linux64/chromedriver");
+
+        // Launch Chrome Browser
+        WebDriver driver = new ChromeDriver();
+
+        // Navigate to the Chat Bot App
+        driver.get("https://qachatbot.ccbp.tech/");
+
+        // Enter the text "Hi" in the input field
+        WebElement inputField = driver.findElement(By.xpath("//input[@id = 'userInput']"));
+        inputField.sendKeys("Hi");
+
+        // Click the send button
+        WebElement sendButton = driver.findElement(By.xpath("//button[@id = 'sendMsgBtn']"));
+        sendButton.click();
+
+        // Enter the text "Good Morning" in the input field
+        inputField.sendKeys("Good Morning");
+
+        // Click the send button
+        sendButton.click();
+
+        // Enter the text "Help!!!" in the input field
+        inputField.sendKeys("Help!!!");
+
+        // Click the send button
+        sendButton.click();
+
+        // Find all the message Elements
+        List<WebElement> messageElements = driver.findElements(By.xpath("//div[@id = 'chatContainer']//descendant::span"));
+
+        // print all the messages
+        for (WebElement message : messageElements) {
+            System.out.println(message.getText());
+        }
+
+        // Quit the WebDriver instance
+        driver.quit();
+    }
+}
