@@ -1,0 +1,52 @@
+import Pages.SearchPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.*;
+import java.time.Duration;
+import java.util.*;
+import org.testng.annotations.Test;
+import Pages.*;
+
+public class SearchPageTest {
+    public WebDriver driver;
+    LoginPage loginPage;
+    HomePage homePage;
+    SearchPage searchPage;
+    PopularPage popularPage;
+
+    @BeforeMethod
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\DELL\\Downloads\\chromedriver-win32 (1)\\chromedriver-win32\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.get("https://qamoviesapp.ccbp.tech/login");
+        driver.manage().window().minimize();
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
+        searchPage = new SearchPage(driver);
+        popularPage = new PopularPage(driver);
+        loginPage.loginToApplication("rahul", "rahul@2021");
+        popularPage.clickButton();
+        String expectedUrl = "https://qamoviesapp.ccbp.tech/search";
+        searchPage.clicksearch();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe(expectedUrl));
+
+
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
+    }
+
+    @Test(priority = 1)
+    public void testSuccessfulSearch() {
+        searchPage.search1("venom");
+            System.out.println(searchPage.getmovieCount());
+        }
+    }
+

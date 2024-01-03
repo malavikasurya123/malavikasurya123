@@ -1,0 +1,108 @@
+package Pages;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
+
+public class MovieDetailsPage {
+    WebDriver driver;
+    WebDriverWait wait;
+
+    public MovieDetailsPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    By movie = By.className("movie-title");
+
+    public String gettitle() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("movie-title")));
+        return driver.findElement(movie).getText();
+    }
+
+    By overview = By.className("movie-overview");
+    By overview1 = By.className("movie-overview");
+    public String getoverview() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("movie-overview")));
+        return driver.findElement(overview).getText();
+    }
+
+    By time = By.className("watch-time");
+
+    public String gettime() {
+        // wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("movie-title")));
+        return driver.findElement(time).getText();
+    }
+
+    By sensor = By.className("sensor-rating");
+
+    public String getsensor() {
+        return driver.findElement(sensor).getText();
+    }
+
+    By year = By.className("release-year");
+
+    public String getyear() {
+        return driver.findElement(year).getText();
+    }
+
+    By button = By.className("play-button");
+
+    public void clickSearchButton() {
+        driver.findElement(button).click();
+    }
+
+    public void buttonDisplayed() {
+        driver.findElement(By.className("react-slick-item")).click();
+    }
+
+    //popular page
+    public void clickButton1() {
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.className("movie-icon-item")));
+        button.click();
+    }
+    By title1=By.className("movie-title");
+    public String gettitle1() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("movie-title")));
+        return driver.findElement(title1).getText();
+    }
+    public String getoverview1() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("movie-overview")));
+        return driver.findElement(overview1).getText();
+    }
+
+    By time1 = By.className("watch-time");
+
+    public String gettime1() {
+        // wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("movie-title")));
+        return driver.findElement(time1).getText();
+    }
+
+    By sensor1 = By.className("sensor-rating");
+
+    public String getsensor1() {
+        return driver.findElement(sensor1).getText();
+    }
+
+    By year1 = By.className("release-year");
+
+    public String getyear1() {
+        return driver.findElement(year1).getText();
+    }
+
+    By button1 = By.className("play-button");
+
+    public void clickSearchButton1() {
+        driver.findElement(button1).click();
+    }
+
+}

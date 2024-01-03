@@ -1,0 +1,95 @@
+package Pages;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+import java.util.List;
+import org.openqa.selenium.By;
+public class HomePage {
+    WebDriver driver;
+    WebDriverWait wait;
+
+
+
+    By logo = By.className("website-logo");
+
+    public WebElement getMoviesLogoEl() {
+        return driver.findElement(logo);
+    }
+
+    By hometext = By.linkText("Home");
+
+    public String getHomeText() {
+        return driver.findElement(hometext).getText();
+
+    }
+
+    By populartext = By.linkText("Popular");
+
+    public String getPopularText() {
+        return driver.findElement(populartext).getText();
+
+    }public void clickButton1() {
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.className("avatar-button")));
+        button.click();
+    }
+
+    By avatartext = By.className("avatar-button");
+
+    public WebElement getAvatarImgEl() {
+        return driver.findElement(avatartext);
+    }
+
+    By populartext1 = By.linkText("Popular");
+
+    public WebElement getPopularEl() {
+        return driver.findElement(By.linkText("Popular"));
+    }
+
+    public WebElement getHomeEl() {
+        return driver.findElement(By.linkText("Home"));
+    }
+
+
+
+    //homepagetest
+    @FindBy(className = "movies-list-heading")
+    List<WebElement> labelElements1;
+    @FindBy(className = "home-movie-play-button")
+    WebElement loginButtonElement1;
+    @FindBy(className = "home-movie-details-container")
+    WebElement moviesection;
+    @FindBy(className = "contact-us-paragraph")
+    WebElement contactus;
+
+
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    public String getLabelTextAt(int index) {
+        return labelElements1.get(index).getText();
+    }
+
+    public WebElement clickOnLoginButton1() {
+        return loginButtonElement1;
+    }
+
+    public WebElement moviesection() {
+        return moviesection;
+    }
+
+    public WebElement contact() {
+        return contactus;
+    }
+    public void clickButton() {
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Popular")));
+        button.click();
+    }
+}
